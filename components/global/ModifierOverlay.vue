@@ -23,7 +23,6 @@ const props = defineProps({
 <style>
 .overlay-scrollbar::-webkit-scrollbar {
   width: 10px;
-  background: transparent;
 }
 
 .overlay-scrollbar::-webkit-scrollbar-track {
