@@ -1,6 +1,6 @@
 <template>
   <div
-    class="absolute bg-black bg-opacity-20 top-0 bottom-0 left-0 right-0 py-5 pl-8 pr-4 rounded-xl backdrop-blur-lg flex flex-col opacity-100"
+    class="absolute bg-black bg-opacity-20 top-0 bottom-0 left-0 right-0 py-5 pl-8 pr-4 rounded-xl backdrop-blur-lg flex flex-col opacity-100 z-10"
   >
     <h3 class="text-2xl font-semibold mb-4">Modifiers</h3>
     <div class="overlay-scrollbar pr-4 overflow-y-auto">
