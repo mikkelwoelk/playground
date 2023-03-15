@@ -10,6 +10,11 @@
       <VueDirectivesVFor />
       <VueDirectivesVOn />
       <VueDirectivesVBind />
+      <VueDirectivesVSlot />
+      <VueDirectivesVPre />
+      <VueDirectivesVOnce />
+      <VueDirectivesVMemo />
+      <VueDirectivesVCloak />
     </div>
   </div>
 </template>
