@@ -1,5 +1,8 @@
 <template>
-  <div v-if="cardContent" class="relative flex flex-col justify-between py-5 px-8 w-full shadow-2xl rounded-xl">
+  <div
+    v-if="cardContent"
+    class="c-card-container relative flex flex-col justify-between py-5 px-8 w-full shadow-2xl rounded-xl"
+  >
     <Transition name="t-fade-in">
       <ModifierOverlay v-if="show" :card-content="cardContent" />
     </Transition>

@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div class="c-navigation-bar"></div>
 </template>
 
 <script setup></script>
