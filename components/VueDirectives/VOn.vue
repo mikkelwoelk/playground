@@ -43,11 +43,6 @@ const cardContent = ref({
 const isHovered = ref(false);
 const isBtnMoved = ref(false);
 
-const show = ref(false);
-const toggleOverlay = () => {
-  show.value = !show.value;
-};
-
 const btnClicked = () => {
   console.log('Wow, you actually clicked the button.. Congratulations I guess..');
 };
