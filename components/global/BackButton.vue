@@ -1,5 +1,5 @@
 <template>
-  <div class="c-back-button absolute top-10 left-10">
+  <button class="c-back-button absolute">
     <NuxtLink :to="'/'">
       <img
         class="w-10 fill-white hover:-translate-x-1 transition-all duration-200 ease-in-out"
@@ -7,7 +7,7 @@
         alt=""
       />
     </NuxtLink>
-  </div>
+  </button>
 </template>
 
 <script setup></script>
