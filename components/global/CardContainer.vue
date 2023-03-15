@@ -7,7 +7,7 @@
       <ModifierOverlay v-if="show" :card-content="cardContent" />
     </Transition>
     <ModifierButton v-if="cardContent?.modifiers" @click="() => toggleOverlay()" />
-    <div>
+    <div class="c-card-container__inner">
       <CardTitle #card-title> {{ cardContent.title }} </CardTitle>
       <CardInfo #card-info> {{ cardContent.info }} </CardInfo>
     </div>
@@ -26,4 +26,8 @@ const toggleOverlay = () => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.c-card-container div:last-child :is(.c-card-info) {
+  @apply mb-0;
+}
+</style>
