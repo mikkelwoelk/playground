@@ -51,7 +51,10 @@ const cardContent = ref({
 
 const selectedOption = ref('');
 
+let timer;
+
 const changeColor = (color) => {
+  clearTimeout(timer);
   if (color == 'red') {
     selectedOption.value = 'red';
   }
@@ -61,7 +64,7 @@ const changeColor = (color) => {
   if (color == 'blue') {
     selectedOption.value = 'blue';
   }
-  setTimeout(() => {
+  timer = setTimeout(() => {
     selectedOption.value = '';
   }, '3000');
 };
