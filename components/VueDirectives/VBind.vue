@@ -13,7 +13,7 @@
         <div class="flex flex-col items-center">
           <span class="text-sm mb-5">Press a button to bind a color to this card.</span>
         </div>
-        <div class="w-full flex justify-around">
+        <div class="w-full flex justify-around mb-5">
           <button
             class="border-2 border-white px-2 py-1 rounded-lg hover:bg-red-500 transition-all duration-300 ease-in-out"
             @click="() => changeColor('red')"
