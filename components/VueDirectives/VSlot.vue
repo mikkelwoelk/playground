@@ -1,6 +1,11 @@
 <template>
   <CardContainer :card-content="cardContent">
-    <template #content> </template>
+    <template #content>
+      <span>
+        The title and description for each of these card are handled by slots, telling them where to place each piece of
+        content.
+      </span>
+    </template>
   </CardContainer>
 </template>
 
