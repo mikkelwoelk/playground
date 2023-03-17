@@ -2,15 +2,15 @@
   <CardContainer :card-content="cardContent">
     <template #content>
       <input v-model.trim="message" type="text" placeholder="Who do you want to be?" />
-      <p class="mt-10">
+      <div class="mt-10">
         <span v-if="message == 'superman' || message == 'Superman'" class="italic"
           >"You are who you choose to be..
         </span>
         <span v-else>"I want to be.. </span>
         <span v-if="message == 'superman' || message == 'Superman'" class="italic">{{ message }}"</span>
         <span v-else="message != ''">{{ message }}"</span>
-      </p>
-      <p v-if="message == 'superman' || message == 'Superman'" class="italic indent-5">- The Iron Giant</p>
+      </div>
+      <span v-if="message == 'superman' || message == 'Superman'" class="italic indent-5">- The Iron Giant</span>
     </template>
   </CardContainer>
 </template>
