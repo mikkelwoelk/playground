@@ -38,7 +38,11 @@ li {
 }
 
 input {
-  @apply bg-opacity-10 bg-transparent outline-none border-2 border-opacity-20 p-2 rounded-lg;
+  @apply bg-opacity-10 text-sm bg-transparent outline-none border-2 border-opacity-20 p-2 rounded-lg;
+}
+
+span {
+  @apply text-sm;
 }
 
 .t-fade-in-enter-active,
