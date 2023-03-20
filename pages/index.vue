@@ -16,8 +16,8 @@
 <script setup>
 const pageTitle = ref('playground');
 const pages = ref([
-  { title: 'Directives', info: 'A list of all the built-in directives within Vue.', url: 'directives' },
-  { title: 'Todo list', info: 'A todo list project.', url: 'todo' },
+  { title: 'Vue Directives', info: 'A list of all the built-in directives within Vue.', url: 'directives' },
+  { title: 'Todo List', info: 'A todo list project.', url: 'todo' },
 ]);
 </script>
 
