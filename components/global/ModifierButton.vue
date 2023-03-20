@@ -4,7 +4,7 @@
   >
     <img
       class="flex group-hover:scale-[11] group-hover:-translate-x-[250%] transition-all duration-300 ease-in-out"
-      src="~~/src/img/slider-icon.svg"
+      src="/slider-icon.svg"
       alt=""
     />
   </button>
