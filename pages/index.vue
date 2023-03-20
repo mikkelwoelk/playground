@@ -4,9 +4,9 @@
     <div
       class="c-page-list grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 max-w-7xl mx-auto"
     >
-      <div class="c-page-list__item relative overflow-hidden shadow-2xl rounded-xl" v-for="page in pages">
+      <div class="c-page-list__item relative overflow-hidden shadow-2xl rounded-xl" v-for="(page, index) in pages">
         <NuxtLink :to="page.url">
-          <CardContainer :card-content="pages[0]"></CardContainer>
+          <CardContainer :card-content="pages[index]"></CardContainer>
         </NuxtLink>
       </div>
     </div>
@@ -17,6 +17,7 @@
 const pageTitle = ref('playground');
 const pages = ref([
   { title: 'Directives', info: 'A list of all the built-in directives within Vue.', url: 'directives' },
+  { title: 'Todo list', info: 'A todo list project.', url: 'todo' },
 ]);
 </script>
 
