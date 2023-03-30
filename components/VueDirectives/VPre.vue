@@ -1,7 +1,9 @@
 <template>
   <CardContainer :card-content="cardContent">
     <template #content>
-      <span> Without v-pre: {{ message }}</span>
+      <span>
+        Without v-pre: <span class="italic">{{ message }}</span></span
+      >
       <span v-pre> With v-pre: {{ message }}</span>
     </template>
   </CardContainer>
