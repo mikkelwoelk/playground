@@ -7,7 +7,7 @@
         'relative bg-gradient-to-r to-transparent',
         'transition-all duration-300 ease-in-out',
         importanceColor,
-        { 'opacity-50': checked },
+        { 'opacity-30': checked },
         { 'border-red-500': error },
         [isExpanded ? 'max-h-[200px]' : 'max-h-[76px]'],
       ]"
