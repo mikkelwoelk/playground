@@ -2,23 +2,78 @@
   <div class="p-todo">
     <div class="md:px-10 px-5 py-10 md:py-16 relative">
       <BackButton />
-      <h1 class="text-center text-6xl md:text-8xl mb-10 md:mb-20" v-text="pageTitle" />
-      <div class="w-1/2 mx-auto flex flex-col justify-center gap-10">
-        <div class="flex gap-2 mx-auto">
-          <input v-model="newTodo.title" type="text" ref="input" @keyup.enter="() => addTodo()" />
-          <button class="py-1 px-2 border-2 rounded-md" @click="() => addTodo()">Add</button>
+      <h1 class="text-center text-6xl md:text-8xl mb-10 md:mb-20 capitalize" v-text="pageTitle" />
+      <div class="w-full md:w-8/12 xl:w-1/2 max-w-[700px] mx-auto flex flex-col justify-center gap-10">
+        <div class="flex gap-2">
+          <form class="flex flex-col gap-2 w-full" @submit.prevent="() => addTodo()" @keyup.enter="() => addTodo()">
+            <div class="flex gap-2">
+              <input
+                v-model.trim="newTodo.title"
+                type="text"
+                ref="requiredInput"
+                @keyup.enter="() => addTodo()"
+                placeholder="Add title"
+                maxlength="35"
+              />
+              <input v-model.trim="newTodo.text" type="text" maxlength="300" placeholder="Add text" />
+            </div>
+            <div class="flex gap-3">
+              <fieldset class="grid grid-cols-3 pl-2 justify-around w-full">
+                <label class="relative">
+                  <input
+                    class="absolute w-0 h-0 opacity-0"
+                    v-model="newTodo.importance"
+                    :value="1"
+                    type="radio"
+                    name="radio"
+                  />
+                  <span class="custom-radio border-green-500"></span>
+                </label>
+                <label class="relative">
+                  <input
+                    class="absolute w-0 h-0 opacity-0"
+                    v-model="newTodo.importance"
+                    :value="2"
+                    type="radio"
+                    name="radio"
+                  />
+                  <span class="custom-radio border-yellow-500"></span>
+                </label>
+                <label class="relative">
+                  <input
+                    class="absolute w-0 h-0 opacity-0"
+                    v-model="newTodo.importance"
+                    :value="3"
+                    type="radio"
+                    name="radio"
+                  />
+                  <span class="custom-radio border-red-500"></span>
+                </label>
+              </fieldset>
+              <input class="w-full" v-model="newTodo.date" type="datetime-local" name="" id="" />
+            </div>
+            <button class="py-1 px-2 border-2 rounded-md uppercase" @click="() => addTodo()">add todo</button>
+          </form>
         </div>
         <div class="flex flex-col gap-2 items-center">
-          <div class="flex flex-col gap-2 w-full">
-            <div
-              class="w-full flex gap-2 p-5 rounded-md bg-black"
+          <div v-if="todoList.length == 0 && !isLoading">
+            <span class="text-2xl">All your todos will be right here.</span>
+          </div>
+          <div v-else class="p-todo__list flex flex-col gap-2 w-full">
+            <TodoItem
+              :id="`todo-id-${todo.id}`"
+              :title="todo.title"
+              :text="todo.text"
+              :is-expanded="todo.isExpanded"
+              :importance="todo.importance"
+              :date="todo.date"
+              :checked="todo.checked"
               v-for="(todo, index) in todoList"
               :key="`todo-id-${todo.id}`"
-            >
-              <input type="checkbox" :checked="todo.checked" />
-              <span class="text-lg capitalize">{{ todo.title }}</span>
-              <button class="py-1 px-2 bg-red-500" @click="() => deleteTodo(index)">DELETE</button>
-            </div>
+              @delete="() => deleteTodo(index)"
+              @checked="() => checkTodo(index)"
+              @expand="() => expandTodo(index)"
+            />
           </div>
         </div>
       </div>
@@ -27,43 +82,43 @@
 </template>
 
 <script setup>
-const pageTitle = ref('Todo list');
-const input = ref(null);
+const pageTitle = ref('todo list');
+const requiredInput = ref('');
+const error = ref(false);
+const isLoading = ref(true);
 const todoList = ref([]);
 const newTodo = ref({
   id: '',
   title: '',
-  text: 'hello',
-  importance: { color: 'green', lvl: 1 },
-  date: {},
+  text: '',
+  importance: 1,
+  date: '',
   checked: false,
+  isExpanded: false,
 });
 
-const deleteTodo = (todoIndex) => {
-  todoList.value.splice(todoIndex, 1);
-
-  saveTodo();
-};
-
 const addTodo = () => {
-  newTodo.value.date = new Date();
-  newTodo.value.id = Math.random().toString(36).substring(2);
+  if (newTodo.value.title == '') {
+    // error
+  }
 
-  todoList.value.push(newTodo.value);
+  if (newTodo.value.title != '') {
+    newTodo.value.date = new Date().toDateString();
+    newTodo.value.id = Math.random().toString(36).substring(2);
 
-  saveTodo();
+    todoList.value.push(newTodo.value);
 
-  newTodo.value = {
-    title: '',
-    description: '',
-    importance: {
-      color: newTodo.value.importance.color,
-      lvl: newTodo.value.importance.lvl,
-    },
-    date: {},
-  };
+    saveTodo();
 
-  input.value.focus();
+    newTodo.value = {
+      title: '',
+      text: '',
+      importance: newTodo.value.importance,
+      date: '',
+    };
+  }
+
+  requiredInput.value.focus();
 };
 
 const saveTodo = () => {
@@ -71,10 +126,37 @@ const saveTodo = () => {
   localStorage.setItem('todoList', parsedTodo);
 };
 
+const checkTodo = (index) => {
+  todoList.value[index].checked = !todoList.value[index].checked;
+  if (todoList.value[index].checked) {
+    todoList.value.push(todoList.value.splice(index, 1)[0]);
+  } else {
+    todoList.value.unshift(todoList.value.splice(index, 1)[0]);
+  }
+  saveTodo();
+};
+
+const deleteTodo = (index) => {
+  todoList.value.splice(index, 1);
+
+  saveTodo();
+};
+
+const expandTodo = (index) => {
+  todoList.value.forEach((e, i) => {
+    if (i !== index) {
+      e.isExpanded = false;
+    } else {
+      e.isExpanded = !e.isExpanded;
+    }
+  });
+};
+
 onMounted(() => {
   if (localStorage.getItem('todoList')) {
     try {
       todoList.value = JSON.parse(localStorage.getItem('todoList'));
+      isLoading.value = false;
     } catch (e) {
       localStorage.removeItem('todoList');
     }
@@ -82,4 +164,12 @@ onMounted(() => {
 });
 </script>
 
-<style></style>
+<style lang="postcss">
+.custom-radio {
+  @apply absolute top-0 left-1/2 -translate-x-1/2 max-md:top-1/2 max-md:-translate-y-1/2 w-[30px] h-[30px] md:w-[42px] md:h-[42px] bg-white rounded-full border-[15px] md:border-[21px] cursor-pointer transition-all duration-200 ease-in;
+}
+
+fieldset input:checked ~ .custom-radio {
+  @apply max-md:border-[8px] border-[10px];
+}
+</style>
