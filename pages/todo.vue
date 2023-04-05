@@ -172,6 +172,6 @@ onMounted(() => {
 }
 
 fieldset input:checked ~ .custom-radio::after {
-  @apply w-[20px] h-[20px];
+  @apply w-[25px] h-[25px];
 }
 </style>
