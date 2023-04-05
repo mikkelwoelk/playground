@@ -37,8 +37,8 @@ li {
   @apply text-[var(--color-text)];
 }
 
-input {
-  @apply bg-opacity-10 text-sm bg-transparent outline-none border-2 border-opacity-20 p-2 rounded-lg;
+input:not(input[type='radio'], input[type='checkbox']) {
+  @apply w-full bg-opacity-10 text-sm bg-transparent outline-none border-2 border-opacity-20 p-2 rounded-lg;
 }
 
 span {
