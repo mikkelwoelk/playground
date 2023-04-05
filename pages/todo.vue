@@ -27,7 +27,7 @@
                     type="radio"
                     name="radio"
                   />
-                  <span class="custom-radio border-green-500"></span>
+                  <span class="custom-radio bg-green-500"></span>
                 </label>
                 <label class="relative">
                   <input
@@ -37,7 +37,7 @@
                     type="radio"
                     name="radio"
                   />
-                  <span class="custom-radio border-yellow-500"></span>
+                  <span class="custom-radio bg-yellow-500"></span>
                 </label>
                 <label class="relative">
                   <input
@@ -47,7 +47,7 @@
                     type="radio"
                     name="radio"
                   />
-                  <span class="custom-radio border-red-500"></span>
+                  <span class="custom-radio bg-red-500"></span>
                 </label>
               </fieldset>
               <input class="w-full" v-model="newTodo.date" type="datetime-local" name="" id="" />
@@ -166,10 +166,12 @@ onMounted(() => {
 
 <style lang="postcss">
 .custom-radio {
-  @apply absolute top-0 left-1/2 -translate-x-1/2 max-md:top-1/2 max-md:-translate-y-1/2 w-[30px] h-[30px] md:w-[42px] md:h-[42px] bg-white rounded-full border-[15px] md:border-[21px] cursor-pointer transition-all duration-200 ease-in;
+  @apply absolute top-0 left-1/2 -translate-x-1/2 max-md:top-1/2 max-md:-translate-y-1/2 w-[30px] h-[30px] md:w-[42px] md:h-[42px] rounded-full cursor-pointer transition-all duration-200 ease-in;
+  @apply after:content-[''] after:absolute after:w-[10px] after:h-[10px] after:bg-white after:rounded-full after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2;
+  @apply after:transition-all after:duration-300 after:ease-in-out;
 }
 
-fieldset input:checked ~ .custom-radio {
-  @apply max-md:border-[8px] border-[10px];
+fieldset input:checked ~ .custom-radio::after {
+  @apply w-[20px] h-[20px];
 }
 </style>
