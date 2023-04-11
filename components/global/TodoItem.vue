@@ -63,7 +63,7 @@ const props = defineProps({
   isExpanded: Boolean,
 });
 
-const emit = defineEmits(['delete', 'checked', 'expand']);
+const emit = defineEmits(['expand', 'checked', 'delete']);
 
 const importanceColor = computed(() => {
   if (props.importance == 1) return 'from-green-500';
