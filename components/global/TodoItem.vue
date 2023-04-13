@@ -1,5 +1,5 @@
 <template>
-  <div class="c-todo-item">
+  <div class="c-todo-item" :id="id">
     <div
       :class="[
         'w-full flex flex-col  gap-5 p-5',
@@ -9,7 +9,7 @@
         importanceColor,
         { 'opacity-30': checked },
         { 'border-red-500': error },
-        [isExpanded ? 'max-h-[200px]' : 'max-h-[76px]'],
+        [isExpanded ? 'max-h-[200px]' : 'max-lg:max-h-[76px] max-h-[80px]'],
       ]"
     >
       <div
