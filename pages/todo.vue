@@ -61,7 +61,7 @@
           </div>
           <div v-else class="p-todo__list flex flex-col gap-2 w-full">
             <TodoItem
-              :id="`todo-id-${todo.id}`"
+              :id="todo.id"
               :title="todo.title"
               :text="todo.text"
               :is-expanded="todo.isExpanded"
