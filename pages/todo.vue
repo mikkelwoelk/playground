@@ -50,7 +50,7 @@
                   <span class="custom-radio bg-red-500"></span>
                 </label>
               </fieldset>
-              <input class="w-full" v-model="newTodo.date" type="datetime-local" name="" id="" />
+              <input class="w-full" v-model="newTodo.date" :min="minDate" type="datetime-local" />
             </div>
             <button class="py-1 px-2 border-2 rounded-md uppercase" @click="() => addTodo()">add todo</button>
           </form>
@@ -73,6 +73,9 @@
               @delete="() => deleteTodo(index)"
               @checked="() => checkTodo(index)"
               @expand="() => expandTodo(index)"
+              :style="{
+                transitionDelay: `${100 * (index + 1)}ms`,
+              }"
             />
           </div>
         </div>
@@ -152,7 +155,38 @@ const expandTodo = (index) => {
   });
 };
 
+const minDate = computed(() => {
+  const date = new Date();
+
+  const timeOffset = -new Date().getTimezoneOffset() / 60;
+  const year = date.getUTCFullYear();
+  let month = date.getUTCMonth() + 1;
+  if (month < 10) {
+    month = '0' + month;
+  }
+  let day = date.getUTCDate();
+  if (day < 10) {
+    day = '0' + day;
+  }
+  let hours = date.getUTCHours() + timeOffset;
+  if (hours < 10) {
+    hours = '0' + hours;
+  }
+  let minutes = date.getUTCMinutes();
+  if (minutes < 10) {
+    minutes = '0' + minutes;
+  }
+
+  return `${year}-${month}-${day}T${hours}:${minutes}`;
+});
+
 onMounted(() => {
+  const mountedDate = ref({});
+  setTimeout(() => {
+    mountedDate.value = document.querySelector('input[type="datetime-local"]');
+    mountedDate.value.value = minDate.value;
+  }, 0);
+
   if (localStorage.getItem('todoList')) {
     try {
       todoList.value = JSON.parse(localStorage.getItem('todoList'));
@@ -172,6 +206,10 @@ onMounted(() => {
 }
 
 fieldset input:checked ~ .custom-radio::after {
-  @apply w-[25px] h-[25px];
+  @apply w-[60%] h-[60%];
+}
+
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
 }
 </style>
