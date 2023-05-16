@@ -86,10 +86,10 @@ const importanceColor = computed(() => {
 }
 
 .t-todo-enter-from {
-  @apply opacity-0 translate-y-10;
+  @apply opacity-0 translate-y-10 scale-0;
 }
 
 .t-todo-leave-to {
-  @apply opacity-0 -translate-x-10;
+  @apply opacity-0 -translate-x-10 scale-0;
 }
 </style>
