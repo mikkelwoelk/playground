@@ -10,10 +10,11 @@
               <input
                 v-model.trim="newTodo.title"
                 type="text"
-                ref="requiredInput"
+                ref="titleInput"
                 @keyup.enter="() => addTodo()"
                 placeholder="Add title"
                 maxlength="35"
+                :class="{ 'border-red': error.state }"
               />
               <input v-model.trim="newTodo.text" type="text" maxlength="300" placeholder="Add text" />
             </div>
@@ -86,8 +87,7 @@
 
 <script setup>
 const pageTitle = ref('todo list');
-const requiredInput = ref('');
-const error = ref(false);
+const titleInput = ref('');
 const isLoading = ref(true);
 const todoList = ref([]);
 const newTodo = ref({
@@ -100,9 +100,14 @@ const newTodo = ref({
   isExpanded: false,
 });
 
+const error = ref({
+  state: false,
+  messages: [],
+});
+
 const addTodo = () => {
   if (newTodo.value.title == '') {
-    // error
+    error.value.state = true;
   }
 
   if (newTodo.value.title != '') {
@@ -121,7 +126,7 @@ const addTodo = () => {
     };
   }
 
-  requiredInput.value.focus();
+  titleInput.value.focus();
 };
 
 const saveTodo = () => {
@@ -185,7 +190,7 @@ onMounted(() => {
   setTimeout(() => {
     mountedDate.value = document.querySelector('input[type="datetime-local"]');
     mountedDate.value.value = minDate.value;
-  }, 0);
+  }, 200);
 
   if (localStorage.getItem('todoList')) {
     try {
@@ -211,5 +216,9 @@ fieldset input:checked ~ .custom-radio::after {
 
 ::-webkit-calendar-picker-indicator {
   filter: invert(1);
+}
+
+.border-red {
+  border-color: red !important;
 }
 </style>
