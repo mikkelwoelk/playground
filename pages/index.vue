@@ -1,7 +1,7 @@
 <template>
   <div class="p-frontpage">
     <div class="md:px-10 px-5 py-10 md:py-16">
-      <h1 class="text-center text-6xl md:text-8xl mb-10 md:mb-20" v-text="pageTitle" />
+      <h1 class="text-center text-4xl sm:text-6xl md:text-8xl mb-10 md:mb-20" v-text="pageTitle" />
       <div
         class="c-page-list grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 max-w-7xl mx-auto"
       >
