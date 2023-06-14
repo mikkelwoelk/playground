@@ -106,9 +106,9 @@ const error = ref({
 });
 
 const addTodo = () => {
-  if (newTodo.value.title == '') {
-    error.value.state = true;
-  }
+  // if (newTodo.value.title == '') {
+  //   error.value.state = true;
+  // }
 
   if (newTodo.value.title != '') {
     newTodo.value.date = new Date().toDateString();
