@@ -4,11 +4,13 @@
 @tailwind utilities;
 
 :root {
-  --color-bg: #1d3557;
+  --color-bg: #232f34;
   --color-primary: #a8dadc;
-  --color-secondary: #457b9d;
-  --color-text: #f1faee;
-  --color-CTA: #e63946;
+  --color-secondary: #344955;
+  /* --color-text: #f1faee; */
+  --color-text: #c4d1dd;
+  /* --color-CTA: #e63946; */
+  --color-CTA: #f9aa33;
 }
 
 html {
@@ -16,8 +18,9 @@ html {
 }
 
 body {
-  background: rgb(96, 142, 144);
-  background: radial-gradient(circle, rgba(96, 142, 144, 1) 0%, rgba(53, 92, 116, 1) 50%, rgba(21, 39, 64, 1) 100%);
+  /* background: radial-gradient(circle, rgba(96, 142, 144, 1) 0%, rgba(53, 92, 116, 1) 50%, rgba(21, 39, 64, 1) 100%); */
+  @apply bg-background dark:bg-dark-background;
+  /* background: var(--color-bg); */
   background-repeat: no-repeat;
   min-height: 100vh;
   overflow-x: hidden;
@@ -56,12 +59,14 @@ span {
 }
 
 ::-webkit-scrollbar {
+  display: none;
   width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: radial-gradient(circle, rgba(96, 142, 144, 1) 0%, rgba(53, 92, 116, 1) 50%, rgba(21, 39, 64, 1) 100%);
-  background-repeat: no-repeat;
+  /* background: radial-gradient(circle, rgba(96, 142, 144, 1) 0%, rgba(53, 92, 116, 1) 50%, rgba(21, 39, 64, 1) 100%); */
+  /* background-repeat: no-repeat; */
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
