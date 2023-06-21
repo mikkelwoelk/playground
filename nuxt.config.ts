@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss'],
   app: {
-    pageTransition: { name: 'page', mode: 'out-in' },
+    pageTransition: { name: 't-page-main', mode: 'out-in' },
   },
+  // css: ['~/assets/css/index.css'],
 });
