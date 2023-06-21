@@ -26,7 +26,7 @@ const toggleOverlay = () => {
 };
 </script>
 
-<style scoped>
+<style lang="postcss">
 .c-card-container div:last-child :is(.c-card-info) {
   @apply mb-0;
 }
