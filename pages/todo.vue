@@ -1,7 +1,6 @@
 <template>
   <div class="p-todo">
     <div class="md:px-10 px-5 py-10 md:py-16 relative">
-      <BackButton />
       <h1 class="text-center text-6xl md:text-8xl mb-10 md:mb-20 capitalize" v-text="pageTitle" />
       <div class="w-full md:w-8/12 xl:w-1/2 max-w-[700px] mx-auto flex flex-col justify-center gap-10">
         <div class="flex gap-2">
