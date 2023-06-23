@@ -37,11 +37,11 @@ h6,
 span,
 button,
 li {
-  @apply text-[var(--color-text)];
+  @apply text-text dark:text-dark-text;
 }
 
 input:not(input[type='radio'], input[type='checkbox']) {
-  @apply w-full bg-opacity-10 text-sm bg-transparent outline-none border-2 border-opacity-20 p-2 rounded-lg;
+  @apply w-full bg-opacity-10 text-sm bg-transparent outline-none border-2 border-opacity-30 border-text dark:border-dark-text p-2 rounded-lg;
 }
 
 span {
@@ -69,7 +69,7 @@ span {
   background: transparent;
 }
 
-::-webkit-scrollbar-thumb {
+/* ::-webkit-scrollbar-thumb {
   background-color: rgba(255, 255, 255, 0.2);
   @apply rounded-full;
-}
+} */
