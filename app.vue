@@ -1,11 +1,8 @@
 <template>
   <main id="main">
+    <SiteNavigation />
     <NuxtPage />
-    <div class="fixed top-10 right-5 flex gap-5">
-      <button @click="changeTheme('dark')">dark</button>
-      <button @click="changeTheme('light')">light</button>
-      <button @click="changeTheme()">opp</button>
-    </div>
+
     <div class="t-page-main__cover">
       <div class="w-full h-full grid place-content-center">
         <div class="w-full h-full">
@@ -23,30 +20,7 @@
   </main>
 </template>
 
-<script setup>
-const changeTheme = (theme) => {
-  if (theme === 'dark') {
-    localStorage.theme = 'dark';
-  }
-  if (theme === 'light') {
-    localStorage.theme = 'light';
-  } else {
-    localStorage.removeItem('theme');
-  }
-  setTheme();
-};
-
-const setTheme = () => {
-  localStorage.theme === 'dark' ||
-  (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-    ? document.documentElement.classList.add('dark')
-    : document.documentElement.classList.remove('dark');
-};
-
-onMounted(() => {
-  setTheme();
-});
-</script>
+<script setup></script>
 
 <style lang="postcss">
 .t-page-main-enter-active,
@@ -116,7 +90,7 @@ onMounted(() => {
 }
 .t-page-main__cover:first-child .t-page-main__cover-text,
 .t-page-main-leave-active ~ .t-page-main__cover .t-page-main__cover-text {
-  animation: spread-text 1000ms ease-in-out forwards;
+  animation: spread-text 1000ms cubic-bezier(0, 0.55, 0.45, 1) forwards;
   animation-iteration-count: 1;
 }
 
