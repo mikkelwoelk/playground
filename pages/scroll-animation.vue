@@ -74,10 +74,7 @@ function easeInOutCubic(x) {
 .p-index__target {
   position: absolute;
   top: 90vh;
-  /* top: 100vh; */
-  /* left: 00px; */
-  left: 0;
-  border-radius: 4px;
+  left: 50%;
   background-color: #222;
   /**
   * Use the CSS variable (--percentage) that we
@@ -89,14 +86,11 @@ function easeInOutCubic(x) {
   */
   /* width: calc(128px + 128px * var(--percentage));
   height: calc(128px + 128px * var(--percentage)); */
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1/1;
-  transform: translateY(calc(-50% - var(--percentage) * 50vh)) scale(calc(2 * var(--percentage)));
+  width: 100px;
+  height: 100px;
+  transform: translate(-50%, calc(-50% - var(--percentage) * 50vh)) scale(calc(15 * var(--percentage)));
   /* transform: translate(-50%, calc(-50% + var(--percentage) + 100px));
   transform: translate(calc(-50% + var(--percentage) * 40vw), -50%) scale(var(--percentage)); */
-  /* transform: translateY(var(--percentage) * -50%); */
-  /* transform: scale(var(--percentage)); */
   border-top-left-radius: 100%;
   border-top-right-radius: 100%;
 }
