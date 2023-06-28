@@ -2,6 +2,7 @@
   <main id="main">
     <SiteNavigation />
     <NuxtPage />
+    <SiteFooter />
 
     <div class="t-page-main__cover">
       <div class="w-full h-full grid place-content-center">
@@ -35,7 +36,7 @@
 }
 
 .t-page-main__cover {
-  @apply fixed justify-center items-center left-0 top-0 w-full h-full;
+  @apply hidden fixed justify-center items-center left-0 top-0 w-full h-full;
   display: none;
   /* background: radial-gradient(circle, rgba(96, 142, 144, 1) 0%, rgba(53, 92, 116, 1) 50%, rgba(21, 39, 64, 1) 100%); */
   background-color: rgb(224, 229, 235);
