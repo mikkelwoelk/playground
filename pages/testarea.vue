@@ -1,25 +1,23 @@
 <template>
   <div class="p-testarea">
-    <div class="md:px-10 px-5 py-10 md:py-16 relative">
-      <h1 class="text-center text-6xl md:text-8xl mb-10 md:mb-20 capitalize" v-text="pageTitle" />
-      <div class="w-[500px] mx-auto">
-        <!-- TESTAREA -->
-        <input
-          id="searchField"
-          v-model="search"
-          type="text"
-          class="w-full bg-current-color placeholder:text-current-primary py-12 pl-15 pr-47"
-          autocomplete="off"
-          @input="onChange()"
-        />
-        <ul v-if="isOpen">
-          <li v-if="isLoading">Henter forslag...</li>
-          <li v-for="item in suggestions" v-else>
-            {{ item.name }}
-          </li>
-        </ul>
-        <!-- TESTAREA -->
-      </div>
+    <h1 class="page-title" v-text="pageTitle" />
+    <div class="w-full max-w-[500px] mx-auto">
+      <!-- TESTAREA -->
+      <input
+        id="searchField"
+        v-model="search"
+        type="text"
+        class="w-full bg-current-color placeholder:text-current-primary py-12 pl-15 pr-47"
+        autocomplete="off"
+        @input="onChange()"
+      />
+      <ul v-if="isOpen">
+        <li v-if="isLoading">Henter forslag...</li>
+        <li v-for="item in suggestions" v-else>
+          {{ item.name }}
+        </li>
+      </ul>
+      <!-- TESTAREA -->
     </div>
   </div>
 </template>

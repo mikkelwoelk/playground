@@ -1,83 +1,81 @@
 <template>
   <div class="p-todo">
-    <div class="md:px-10 px-5 py-10 md:py-16 relative">
-      <h1 class="text-center text-6xl md:text-8xl mb-10 md:mb-20 capitalize" v-text="pageTitle" />
-      <div class="w-full md:w-8/12 xl:w-1/2 max-w-[700px] mx-auto flex flex-col justify-center gap-10">
-        <div class="flex gap-2">
-          <form class="flex flex-col gap-2 w-full" @submit.prevent="() => addTodo()" @keyup.enter="() => addTodo()">
-            <div class="flex gap-2">
-              <input
-                v-model.trim="newTodo.title"
-                type="text"
-                ref="titleInput"
-                @keyup.enter="() => addTodo()"
-                placeholder="Add title"
-                maxlength="35"
-                :class="{ 'border-red': error.state }"
-              />
-              <input v-model.trim="newTodo.text" type="text" maxlength="300" placeholder="Add text" />
-            </div>
-            <div class="flex gap-3">
-              <fieldset class="grid grid-cols-3 pl-2 justify-around w-full">
-                <label class="relative">
-                  <input
-                    class="absolute w-0 h-0 opacity-0"
-                    v-model="newTodo.importance"
-                    :value="1"
-                    type="radio"
-                    name="radio"
-                  />
-                  <span class="custom-radio bg-green-500"></span>
-                </label>
-                <label class="relative">
-                  <input
-                    class="absolute w-0 h-0 opacity-0"
-                    v-model="newTodo.importance"
-                    :value="2"
-                    type="radio"
-                    name="radio"
-                  />
-                  <span class="custom-radio bg-yellow-500"></span>
-                </label>
-                <label class="relative">
-                  <input
-                    class="absolute w-0 h-0 opacity-0"
-                    v-model="newTodo.importance"
-                    :value="3"
-                    type="radio"
-                    name="radio"
-                  />
-                  <span class="custom-radio bg-red-500"></span>
-                </label>
-              </fieldset>
-              <input class="w-full" v-model="newTodo.date" :min="minDate" type="datetime-local" />
-            </div>
-            <button class="py-1 px-2 border-2 rounded-md uppercase" @click="() => addTodo()">add todo</button>
-          </form>
-        </div>
-        <div class="flex flex-col gap-2 items-center">
-          <div v-if="todoList.length == 0 && !isLoading">
-            <span class="text-2xl">All your todos will be right here.</span>
-          </div>
-          <div v-else class="p-todo__list flex flex-col gap-2 w-full">
-            <TodoItem
-              :id="todo.id"
-              :title="todo.title"
-              :text="todo.text"
-              :is-expanded="todo.isExpanded"
-              :importance="todo.importance"
-              :date="todo.date"
-              :checked="todo.checked"
-              v-for="(todo, index) in todoList"
-              :key="`todo-id-${todo.id}`"
-              @delete="() => deleteTodo(index)"
-              @checked="() => checkTodo(index)"
-              @expand="() => expandTodo(index)"
-              :style="{
-                transitionDelay: `${100 * (index + 1)}ms`,
-              }"
+    <h1 class="page-title" v-text="pageTitle" />
+    <div class="w-full md:w-8/12 xl:w-1/2 max-w-[700px] mx-auto flex flex-col justify-center gap-10">
+      <div class="flex gap-2">
+        <form class="flex flex-col gap-2 w-full" @submit.prevent="() => addTodo()" @keyup.enter="() => addTodo()">
+          <div class="flex gap-2">
+            <input
+              v-model.trim="newTodo.title"
+              type="text"
+              ref="titleInput"
+              @keyup.enter="() => addTodo()"
+              placeholder="Add title"
+              maxlength="35"
+              :class="{ 'border-red': error.state }"
             />
+            <input v-model.trim="newTodo.text" type="text" maxlength="300" placeholder="Add text" />
           </div>
+          <div class="flex gap-3">
+            <fieldset class="grid grid-cols-3 pl-2 justify-around w-full">
+              <label class="relative">
+                <input
+                  class="absolute w-0 h-0 opacity-0"
+                  v-model="newTodo.importance"
+                  :value="1"
+                  type="radio"
+                  name="radio"
+                />
+                <span class="custom-radio bg-green-500"></span>
+              </label>
+              <label class="relative">
+                <input
+                  class="absolute w-0 h-0 opacity-0"
+                  v-model="newTodo.importance"
+                  :value="2"
+                  type="radio"
+                  name="radio"
+                />
+                <span class="custom-radio bg-yellow-500"></span>
+              </label>
+              <label class="relative">
+                <input
+                  class="absolute w-0 h-0 opacity-0"
+                  v-model="newTodo.importance"
+                  :value="3"
+                  type="radio"
+                  name="radio"
+                />
+                <span class="custom-radio bg-red-500"></span>
+              </label>
+            </fieldset>
+            <input class="w-full" v-model="newTodo.date" :min="minDate" type="datetime-local" />
+          </div>
+          <button class="py-1 px-2 border-2 rounded-md uppercase" @click="() => addTodo()">add todo</button>
+        </form>
+      </div>
+      <div class="flex flex-col gap-2 items-center">
+        <div v-if="todoList.length == 0 && !isLoading">
+          <span class="text-2xl">All your todos will be right here.</span>
+        </div>
+        <div v-else class="p-todo__list flex flex-col gap-2 w-full">
+          <TodoItem
+            :id="todo.id"
+            :title="todo.title"
+            :text="todo.text"
+            :is-expanded="todo.isExpanded"
+            :importance="todo.importance"
+            :date="todo.date"
+            :checked="todo.checked"
+            v-for="(todo, index) in todoList"
+            :key="`todo-id-${todo.id}`"
+            @delete="() => deleteTodo(index)"
+            @checked="() => checkTodo(index)"
+            @expand="() => expandTodo(index)"
+            :style="{
+              transitionDelay: `${100 * (index + 1)}ms`,
+            }"
+          />
         </div>
       </div>
     </div>

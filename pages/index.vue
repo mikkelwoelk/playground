@@ -1,15 +1,13 @@
 <template>
   <div class="p-frontpage">
-    <div class="md:px-10 px-5 py-5 sm:py-10 md:py-16">
-      <h1 class="text-center text-5xl sm:text-6xl md:text-8xl mb-10 md:mb-20" v-text="pageTitle" />
-      <div
-        class="c-page-list grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 max-w-7xl mx-auto"
-      >
-        <div class="c-page-list__item rounded-xl" v-for="(page, index) in pages">
-          <NuxtLink :to="page.url">
-            <CardContainer :card-content="pages[index]"></CardContainer>
-          </NuxtLink>
-        </div>
+    <h1 class="page-title" v-text="pageTitle" />
+    <div
+      class="c-page-list grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 max-w-7xl mx-auto"
+    >
+      <div class="c-page-list__item rounded-xl" v-for="(page, index) in pages">
+        <NuxtLink :to="page.url">
+          <CardContainer :card-content="pages[index]"></CardContainer>
+        </NuxtLink>
       </div>
     </div>
   </div>
@@ -22,6 +20,7 @@ const pages = ref([
   { title: 'testarea', info: 'a place to quickly test code.', url: 'testarea' },
   { title: 'todo list', info: 'a todo list project.', url: 'todo' },
   { title: 'scroll animations', info: 'A practice place for making modern web animations.', url: 'scroll-animation' },
+  { title: 'custom loaders', info: 'A practice place for making custom loaders.', url: 'custom-loaders' },
 ]);
 </script>
 
