@@ -75,7 +75,7 @@
           <template v-for="item in navigation">
             <NuxtLink
               :to="item.url"
-              class="c-site-footer__item px-2 relative isolate grid place-content-start sm:place-content-center group"
+              class="c-site-footer__item px-2 w-fit sm:w-full relative isolate grid place-content-start sm:place-content-center group"
             >
               <span
                 class="c-site-footer__item-text text-secondary capitalize dark:text-dark-secondary grow duration-200 ease-in-out group-hover:delay-500"
@@ -87,7 +87,7 @@
           </template>
         </div>
       </div>
-      <div class="pt-3 sm:pt-6"></div>
+      <div class="pt-3 sm:pt-5"></div>
     </div>
     <!-- <div ref="secondContainer" class="second-container">
       <div ref="secondInner" class="second-inner">
@@ -117,6 +117,7 @@ const navigation = ref([
   { title: 'testarea', info: 'a place to quickly test code.', url: 'testarea' },
   { title: 'todo list', info: 'a todo list project.', url: 'todo' },
   { title: 'scroll animations', info: 'A practice place for making modern web animations.', url: 'scroll-animation' },
+  { title: 'custom loaders', info: 'A practice place for making custom loaders', url: 'custom-loaders' },
 ]);
 const firstContainer = ref();
 const firstInner = ref();
@@ -240,14 +241,11 @@ function easeOutQuart(x) {
 /* transform: translate(-50%, calc(-50% + var(--percentage) + 100px));
   transform: translate(calc(-50% + var(--percentage) * 40vw), -50%) scale(var(--percentage)); */
 
-body:has(.first-container) {
-  overscroll-behavior: none;
-}
 .first-container {
   height: 200vh;
   padding: 12px 12px 0 12px;
   @screen sm {
-    padding: 24px 24px 0 24px;
+    padding: 20px 20px 0 20px;
   }
 }
 /**
@@ -259,9 +257,9 @@ body:has(.first-container) {
   width: calc(100vw - 12px * 2);
   @screen sm {
     top: 48px;
-    width: calc(100vw - 24px * 2);
+    width: calc(100vw - 20px * 2);
   }
-  height: calc(100vh - 24px * 2);
+  height: calc(100vh - 20px * 2);
   @apply rounded-t-lg;
   overflow: hidden;
 }
