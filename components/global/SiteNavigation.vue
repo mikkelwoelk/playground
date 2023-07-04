@@ -49,7 +49,7 @@
           @click="() => toggleMenuOverlay()"
         >
           <span
-            class="menu-line w-4/5 group-hover:w-2/4 h-1 rounded-sm bg-dark-background dark:bg-secondary duration-300 ease-in-out"
+            class="menu-line w-4/5 group-hover:w-2/4 h-1 rounded-sm bg-dark-secondary dark:bg-secondary duration-300 ease-in-out"
           ></span>
         </div>
       </div>
@@ -117,11 +117,11 @@ onMounted(() => {
 <style lang="postcss">
 .menu-line::before {
   content: '';
-  @apply absolute top-[8px] right-0 w-3/5 group-hover:w-4/5 h-1 rounded-sm bg-dark-background dark:bg-secondary duration-300 ease-in-out;
+  @apply absolute top-[8px] right-0 w-3/5 group-hover:w-4/5 h-1 rounded-sm bg-dark-secondary dark:bg-secondary duration-300 ease-in-out;
 }
 .menu-line::after {
   content: '';
-  @apply absolute bottom-[8px] right-0 w-2/5 group-hover:w-1/5 h-1 rounded-sm bg-dark-background dark:bg-secondary duration-300 ease-in-out;
+  @apply absolute bottom-[8px] right-0 w-2/5 group-hover:w-1/5 h-1 rounded-sm bg-dark-secondary dark:bg-secondary duration-300 ease-in-out;
 }
 
 .t-menu-overlay-enter-active {
