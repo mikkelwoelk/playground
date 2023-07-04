@@ -1,6 +1,6 @@
 <template>
   <div
-    class="c-back-button w-10 h-10 bg-dark-background dark:bg-transparent border-[3px] border-dark-background dark:border-dark-text rounded-full overflow-hidden"
+    class="c-back-button w-10 h-10 bg-dark-secondary dark:bg-transparent border-[3px] border-dark-secondary dark:border-dark-text rounded-full overflow-hidden"
   >
     <NuxtLink class="flex relative group" :to="'/'">
       <img
