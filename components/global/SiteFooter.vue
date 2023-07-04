@@ -67,7 +67,7 @@
         </div>
       </div>
       <div
-        class="w-full rounded-b-lg p-6 mt-[100vh] pt-20 bg-dark-background dark:bg-secondary flex flex-col justify-start"
+        class="w-full rounded-b-lg p-6 mt-[100vh] pt-20 bg-dark-secondary dark:bg-secondary flex flex-col justify-start"
       >
         <span class="text-5xl text-secondary dark:text-dark-secondary"> woelk </span>
 
@@ -268,7 +268,7 @@ function easeOutQuart(x) {
   position: absolute;
   top: 100vh;
   left: 50%;
-  @apply bg-dark-background dark:bg-secondary rounded-t-full;
+  @apply bg-dark-secondary dark:bg-secondary rounded-t-full;
   width: 100px;
   height: 100px;
   transform: translate(-50%, calc(-50% - var(--firstTranslate) * 50vh)) scale(calc(20 * var(--firstScale)));
