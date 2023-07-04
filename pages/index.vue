@@ -34,9 +34,4 @@ const pages = ref([
 .c-page-list__item:hover .c-card-info {
   @apply opacity-100;
 }
-.c-page-list__item:active {
-  box-shadow: inset 3px 3px 5px #263540, inset -3px -3px 5px #3d5567;
-  transform: scale(0.99999);
-  background-color: #2e3f4d;
-}
 </style>
