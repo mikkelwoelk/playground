@@ -2,9 +2,9 @@
   <CardContainer
     :card-content="cardContent"
     :class="{
-      'bg-red-500': selectedOption == 'red',
-      'bg-green-500': selectedOption == 'green',
-      'bg-blue-500': selectedOption == 'blue',
+      'red-color-picked': selectedOption == 'red',
+      'green-color-picked': selectedOption == 'green',
+      'blue-color-picked': selectedOption == 'blue',
     }"
     class="transition-all duration-300 ease-in-out"
   >
@@ -15,19 +15,19 @@
         </div>
         <div class="w-full flex justify-around mb-5">
           <button
-            class="border-2 border-white px-2 py-1 rounded-lg hover:bg-red-500 transition-all duration-300 ease-in-out"
+            class="border-2 border-white px-2 py-1 rounded-lg hover:bg-red-500 hover:text-white transition-all duration-300 ease-in-out"
             @click="() => changeColor('red')"
           >
             Red
           </button>
           <button
-            class="border-2 border-white px-2 py-1 rounded-lg hover:bg-green-500 transition-all duration-300 ease-in-out"
+            class="border-2 border-white px-2 py-1 rounded-lg hover:bg-green-500 hover:text-white transition-all duration-300 ease-in-out"
             @click="() => changeColor('green')"
           >
             Green
           </button>
           <button
-            class="border-2 border-white px-2 py-1 rounded-lg hover:bg-blue-500 transition-all duration-300 ease-in-out"
+            class="border-2 border-white px-2 py-1 rounded-lg hover:bg-blue-500 hover:text-white transition-all duration-300 ease-in-out"
             @click="() => changeColor('blue')"
           >
             Blue
@@ -70,4 +70,14 @@ const changeColor = (color) => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.red-color-picked {
+  background-color: rgb(239 68 68 / 1);
+}
+.green-color-picked {
+  background-color: rgb(34 197 94 / 1);
+}
+.blue-color-picked {
+  background-color: rgb(59 130 246 / 1);
+}
+</style>
