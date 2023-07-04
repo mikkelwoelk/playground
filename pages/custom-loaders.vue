@@ -9,7 +9,7 @@
               <circle cx="25" cy="25" r="18" stroke-width="12" stroke-linecap="round" />
             </svg>
             <span
-              class="absolute top-1/2 -translate-y-1/2 mr-[1px] right-0 h-[10.5px] w-[10.5px] bg-dark-secondary dark:bg-secondary rounded-full"
+              class="absolute top-1/2 -translate-y-1/2 mr-[1px] right-0 h-[11px] w-[11px] bg-dark-secondary dark:bg-secondary rounded-full"
             ></span>
           </div>
         </div>
@@ -55,36 +55,36 @@ const pageTitle = ref('custom loaders');
 }
 
 .loader-square {
-  @apply absolute w-[30%] h-[30%] bottom-0 right-0 rounded-full bg-dark-secondary dark:bg-secondary;
+  @apply absolute w-[25%] h-[25%] bottom-0 right-0 rounded-full bg-dark-secondary dark:bg-secondary;
   animation: loader-square ease-in-out 4000ms infinite;
 }
 @keyframes loader-square {
   0% {
-    @apply w-[30%] h-[30%] bottom-0 right-0;
+    @apply w-[25%] h-[25%] bottom-0 right-0;
   }
   12.5% {
-    @apply w-full h-[30%] bottom-0 right-0;
+    @apply w-full h-[25%] bottom-0 right-0;
   }
   25% {
-    @apply w-[30%] h-[30%] bottom-0 right-[70%];
+    @apply w-[25%] h-[25%] bottom-0 right-[75%];
   }
   37.5% {
-    @apply w-[30%] h-full bottom-0 right-[70%];
+    @apply w-[25%] h-full bottom-0 right-[75%];
   }
   50% {
-    @apply w-[30%] h-[30%] bottom-[70%] right-[70%];
+    @apply w-[25%] h-[25%] bottom-[75%] right-[75%];
   }
   62.5% {
-    @apply w-full h-[30%] bottom-[70%] right-0;
+    @apply w-full h-[25%] bottom-[75%] right-0;
   }
   75% {
-    @apply w-[30%] h-[30%] bottom-[70%] right-0;
+    @apply w-[25%] h-[25%] bottom-[75%] right-0;
   }
   87.5% {
-    @apply w-[30%] h-full bottom-0 right-0;
+    @apply w-[25%] h-full bottom-0 right-0;
   }
   100% {
-    @apply w-[30%] h-[30%] bottom-0 right-0;
+    @apply w-[25%] h-[25%] bottom-0 right-0;
   }
 }
 </style>
