@@ -2,9 +2,9 @@
   <CardContainer :card-content="cardContent" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
     <template #content>
       <Transition name="t-fade-in" duration="100" mode="out-in">
-        <div class="flex flex-col items-center" v-if="!isHovered">
+        <div v-if="!isHovered" class="flex flex-col items-center">
           <span class="text-sm mb-14">Hover me!</span>
-          <button class="text-transparent border-2 border-transparent w-fit py-0 px-2">click me!</button>
+          <button class="text-transparent opacity-0 border-2 border-transparent w-fit py-0 px-2">.</button>
         </div>
         <div v-else class="flex flex-col items-center">
           <span class="text-sm mb-14">A wild annoying button appeared!</span>
