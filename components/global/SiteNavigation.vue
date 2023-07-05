@@ -45,7 +45,7 @@
 
       <div class="fixed top-5 right-5 md:top-8 md:right-10 z-50 flex items-center">
         <div
-          class="c-site-navigation__menu group relative w-10 h-10 flex items-center justify-end py-3 cursor-pointer z-50"
+          class="c-site-navigation__menu group relative w-10 h-10 flex items-center justify-end cursor-pointer z-50"
           @click="() => toggleMenuOverlay()"
         >
           <span
