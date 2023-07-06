@@ -99,7 +99,13 @@ const setTheme = () => {
 const isOverlayOpen = ref(false);
 
 const toggleMenuOverlay = () => {
+  const body = document.body;
   isOverlayOpen.value = !isOverlayOpen.value;
+  if (isOverlayOpen.value) {
+    body.classList.add('menu-lock');
+  } else {
+    body.classList.remove('menu-lock');
+  }
 };
 watch(
   route,
@@ -115,6 +121,10 @@ onMounted(() => {
 </script>
 
 <style lang="postcss">
+.menu-lock {
+  overflow: hidden;
+}
+
 .menu-line::before {
   content: '';
   @apply absolute top-[8px] right-0 w-3/5 group-hover:w-4/5 h-1 rounded-sm bg-dark-secondary dark:bg-secondary duration-300 ease-in-out;
