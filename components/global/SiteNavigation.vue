@@ -139,13 +139,13 @@ onMounted(() => {
 }
 
 .t-menu-overlay-leave-active {
-  @apply duration-1000 ease-in-out;
+  @apply duration-500 ease-in-out;
 }
 /* .t-menu-overlay-enter {
   @apply opacity-80;
 } */
 .t-menu-overlay-leave-to {
-  @apply opacity-0;
+  @apply translate-y-full;
 }
 
 .t-menu-overlay__cover {
