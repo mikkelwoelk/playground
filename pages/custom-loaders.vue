@@ -35,12 +35,12 @@
       </div>
       <!-- bouncing dots loader -->
       <div class="loader">
-        <div class="w-20 h-16">
+        <div class="w-20 h-12">
           <div class="loader-bouncing-dots">
-            <svg viewBox="0 0 80 64" xmlns="http://www.w3.org/2000/svg">
-              <circle class="dot" cx="15" cy="50" r="8"></circle>
-              <circle class="dot" cx="40" cy="50" r="8" style="animation-delay: 500ms"></circle>
-              <circle class="dot" cx="65" cy="50" r="8" style="animation-delay: 1000ms"></circle>
+            <svg viewBox="0 0 80 48" xmlns="http://www.w3.org/2000/svg">
+              <circle class="dot" cx="15" cy="40" r="8"></circle>
+              <circle class="dot" cx="40" cy="40" r="8" style="animation-delay: 500ms"></circle>
+              <circle class="dot" cx="65" cy="40" r="8" style="animation-delay: 1000ms"></circle>
             </svg>
           </div>
         </div>
@@ -55,7 +55,7 @@ const pageTitle = ref('custom loaders');
 
 <style lang="postcss">
 .loader {
-  @apply border-2 border-dark-secondary dark:border-secondary border-opacity-30 dark:border-opacity-30 w-full h-full  grid place-content-center aspect-square rounded-3xl;
+  @apply border-2 border-dark-secondary dark:border-secondary border-opacity-30 dark:border-opacity-30 w-full h-full p-5 grid place-content-center aspect-square rounded-3xl;
 }
 
 /* circular loader */
@@ -147,21 +147,21 @@ const pageTitle = ref('custom loaders');
 }
 @keyframes loader-bouncing-dot {
   0% {
-    cy: 50;
+    cy: 40;
   }
   20% {
     @apply opacity-100;
-    cy: 15;
+    cy: 10;
   }
   40% {
-    cy: 50;
+    cy: 40;
   }
   45% {
     cy: 35;
   }
   60% {
     @apply opacity-20;
-    cy: 50;
+    cy: 40;
   }
 }
 </style>
