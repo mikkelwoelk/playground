@@ -2,6 +2,7 @@
   <div class="p-custom-loaderss">
     <h1 class="page-title" v-text="pageTitle"></h1>
     <div class="grid grid-cols-4 gap-5">
+      <!-- circular loader -->
       <div class="loader">
         <div class="loader-circle">
           <div class="w-12 h-12 relative">
@@ -14,18 +15,32 @@
           </div>
         </div>
       </div>
+      <!-- square loader -->
       <div class="loader">
         <div class="relative w-12 h-12">
           <span class="loader-square"></span>
         </div>
       </div>
+      <!-- spinning dots loader -->
       <div class="loader">
         <div class="w-20 h-12">
-          <div class="loader-dots">
+          <div class="loader-spinning-dots">
             <svg viewBox="0 0 80 48" xmlns="http://www.w3.org/2000/svg">
               <circle class="dot" cx="0" cy="25" r="8"></circle>
               <circle class="dot" cx="0" cy="25" r="8" style="animation-delay: 1000ms"></circle>
               <circle class="dot" cx="0" cy="25" r="8" style="animation-delay: 2000ms"></circle>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <!-- bouncing dots loader -->
+      <div class="loader">
+        <div class="w-20 h-20">
+          <div class="loader-bouncing-dots">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+              <circle class="dot" cx="15" cy="40" r="8"></circle>
+              <circle class="dot" cx="40" cy="40" r="8" style="animation-delay: 500ms"></circle>
+              <circle class="dot" cx="65" cy="40" r="8" style="animation-delay: 1000ms"></circle>
             </svg>
           </div>
         </div>
@@ -43,10 +58,11 @@ const pageTitle = ref('custom loaders');
   @apply border-2 border-dark-secondary dark:border-secondary border-opacity-30 dark:border-opacity-30 w-full h-full p-5 grid place-content-center aspect-square rounded-lg;
 }
 
+/* circular loader */
 .loader-circle circle {
   @apply fill-transparent stroke-dark-secondary dark:stroke-secondary;
   stroke-dasharray: 135;
-  animation: loader-circle ease-in-out 2500ms infinite;
+  animation: loader-circle cubic-bezier(0.76, 0, 0.24, 1) 2000ms infinite;
 }
 @keyframes loader-circle {
   0% {
@@ -58,9 +74,10 @@ const pageTitle = ref('custom loaders');
   }
 }
 
+/* square loader */
 .loader-square {
   @apply absolute w-[25%] h-[25%] bottom-0 right-0 rounded-full bg-dark-secondary dark:bg-secondary;
-  animation: loader-square ease-in-out 4000ms infinite;
+  animation: loader-square cubic-bezier(0.87, 0, 0.13, 1) 3000ms infinite;
 }
 @keyframes loader-square {
   0% {
@@ -92,12 +109,12 @@ const pageTitle = ref('custom loaders');
   }
 }
 
-.loader-dots .dot {
+/* spinning dots */
+.loader-spinning-dots .dot {
   @apply fill-dark-secondary dark:fill-secondary rounded-full opacity-0;
-  animation: loader-dot ease-in-out 3000ms infinite;
+  animation: loader-spinning-dot cubic-bezier(0.65, 0, 0.35, 1) 3000ms infinite;
 }
-
-@keyframes loader-dot {
+@keyframes loader-spinning-dot {
   0% {
     @apply opacity-0;
     cx: 40;
@@ -120,6 +137,31 @@ const pageTitle = ref('custom loaders');
     @apply opacity-0;
     cx: 40;
     r: 0;
+  }
+}
+
+/* bouncing dots */
+.loader-bouncing-dots .dot {
+  @apply fill-dark-secondary dark:fill-secondary rounded-full opacity-20;
+  animation: loader-bouncing-dot cubic-bezier(0.7, 0, 0.84, 0) 2000ms infinite;
+}
+@keyframes loader-bouncing-dot {
+  0% {
+    cy: 40;
+  }
+  20% {
+    @apply opacity-100;
+    cy: 10;
+  }
+  40% {
+    cy: 40;
+  }
+  45% {
+    cy: 35;
+  }
+  60% {
+    @apply opacity-20;
+    cy: 40;
   }
 }
 </style>
