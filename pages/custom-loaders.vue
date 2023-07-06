@@ -55,7 +55,7 @@ const pageTitle = ref('custom loaders');
 
 <style lang="postcss">
 .loader {
-  @apply border-2 border-dark-secondary dark:border-secondary border-opacity-30 dark:border-opacity-30 w-full h-full p-5 grid place-content-center aspect-square rounded-3xl;
+  @apply border-2 border-dark-secondary dark:border-secondary border-opacity-30 dark:border-opacity-30 w-full h-full grid place-content-center aspect-square rounded-3xl;
 }
 
 /* circular loader */
