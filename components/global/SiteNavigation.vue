@@ -58,18 +58,13 @@
 </template>
 
 <script setup>
+import { useMainStore } from '~/store/main';
 import { useRoute } from 'vue-router';
 
+const store = useMainStore();
 const route = useRoute();
 
-const navigation = ref([
-  { title: 'home', info: "let's go home", url: '/' },
-  { title: 'vue directives', info: 'a list of all the built-in directives within Vue.', url: 'directives' },
-  { title: 'testarea', info: 'a place to quickly test code.', url: 'testarea' },
-  { title: 'todo list', info: 'a todo list project.', url: 'todo' },
-  { title: 'scroll animations', info: 'A practice place for making modern web animations.', url: 'scroll-animation' },
-  { title: 'custom loaders', info: 'A practice place for making custom loaders', url: 'custom-loaders' },
-]);
+const navigation = store.siteNavigation;
 
 const themeCookie = useCookie('theme');
 const activeTheme = ref('default');

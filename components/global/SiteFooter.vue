@@ -3,8 +3,8 @@
     <!-- <span class="fixed top-[90vh] left-1/2 -translate-x-1/2 text-5xl text-secondary dark:text-dark-secondary">
       woelk
     </span> -->
-    <div ref="firstContainer" class="first-container">
-      <div ref="firstInner" class="first-inner">
+    <div ref="footerContainer" class="footer-container">
+      <div ref="footerInner" class="footer-inner">
         <!-- <span class="text-5xl text-secondary dark:text-dark-secondary">
           We do identities, branding, digital in all of its wonderful forms, concepts, content, copy, code.
         </span> -->
@@ -18,8 +18,8 @@
           section.
         -->
         <div
-          class="first-door flex items-center justify-center text-xs"
-          :style="`--firstTranslate: ${firstTranslate}; --firstScale: ${firstScale};`"
+          class="footer-door flex items-center justify-center text-xs"
+          :style="`--footerTranslate: ${footerTranslate}; --footerScale: ${footerScale};`"
         >
           <span class="w-2 sm:w-4 h-auto grid place-content-center">
             <svg class="w-full" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -106,23 +106,14 @@
   </div>
 </template>
 <script setup>
-// import { useMainStore } from '~/store/main';
-// const store = useMainStore();
+import { useMainStore } from '~/store/main';
+const store = useMainStore();
 
-// console.log(store);
-
-const navigation = ref([
-  { title: 'home', info: "let's go home", url: '/' },
-  { title: 'vue directives', info: 'a list of all the built-in directives within Vue.', url: 'directives' },
-  { title: 'testarea', info: 'a place to quickly test code.', url: 'testarea' },
-  { title: 'todo list', info: 'a todo list project.', url: 'todo' },
-  { title: 'scroll animations', info: 'A practice place for making modern web animations.', url: 'scroll-animation' },
-  { title: 'custom loaders', info: 'A practice place for making custom loaders', url: 'custom-loaders' },
-]);
-const firstContainer = ref();
-const firstInner = ref();
-const firstTranslate = ref(0);
-const firstScale = ref(0);
+const navigation = store.siteNavigation;
+const footerContainer = ref();
+const footerInner = ref();
+const footerTranslate = ref(0);
+const footerScale = ref(0);
 let observer = null;
 // const secondContainer = ref();
 // const secondInner = ref();
@@ -137,7 +128,7 @@ let observer = null;
  */
 onMounted(() => {
   observer = new IntersectionObserver(onIntersection);
-  observer.observe(firstInner.value);
+  observer.observe(footerInner.value);
   // observer.observe(secondInner.value);
   // secondObserver = new IntersectionObserver(onIntersection);
   // secondObserver.observe(secondInner.value);
@@ -168,13 +159,13 @@ function onIntersection(entries) {
  */
 function onScroll() {
   const { innerHeight } = window;
-  const { top } = firstContainer.value.getBoundingClientRect();
-  firstTranslate.value = -top / innerHeight;
+  const { top } = footerContainer.value.getBoundingClientRect();
+  footerTranslate.value = -top / innerHeight;
   /** Constrain the value to between 0 and 1 */
-  firstTranslate.value = Math.min(Math.max(firstTranslate.value, 0), 1);
+  footerTranslate.value = Math.min(Math.max(footerTranslate.value, 0), 1);
   /** Apply the easing to the percentage */
-  firstScale.value = easeInQuart(firstTranslate.value);
-  firstTranslate.value = easeOutQuart(firstTranslate.value);
+  footerScale.value = easeInQuart(footerTranslate.value);
+  footerTranslate.value = easeOutQuart(footerTranslate.value);
 }
 /**
  * Easing function.
@@ -241,7 +232,7 @@ function easeOutQuart(x) {
 /* transform: translate(-50%, calc(-50% + var(--percentage) + 100px));
   transform: translate(calc(-50% + var(--percentage) * 40vw), -50%) scale(var(--percentage)); */
 
-.first-container {
+.footer-container {
   height: 200vh;
   padding: 12px 12px 0 12px;
   @screen sm {
@@ -251,7 +242,7 @@ function easeOutQuart(x) {
 /**
 * Notice `position: sticky` here
 */
-.first-inner {
+.footer-inner {
   position: sticky;
   top: 24px;
   width: calc(100vw - 12px * 2);
@@ -264,14 +255,14 @@ function easeOutQuart(x) {
   overflow: hidden;
 }
 
-.first-door {
+.footer-door {
   position: absolute;
   top: 100vh;
   left: 50%;
   @apply bg-dark-secondary dark:bg-secondary rounded-t-full;
   width: 100px;
   height: 100px;
-  transform: translate(-50%, calc(-50% - var(--firstTranslate) * 50vh)) scale(calc(20 * var(--firstScale)));
+  transform: translate(-50%, calc(-50% - var(--footerTranslate) * 50vh)) scale(calc(20 * var(--footerScale)));
   border-radius: 50px 50px 50px 50px;
 }
 /*
