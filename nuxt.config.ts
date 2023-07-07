@@ -2,7 +2,12 @@
 export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt'],
   // buildModules: [],
-  buildModules: ['@nuxt/postcss8'],
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
   app: {
     pageTransition: { name: 't-page-main', mode: 'out-in' },
   },
