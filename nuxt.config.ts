@@ -12,5 +12,3 @@ export default defineNuxtConfig({
   },
   // css: ['~/assets/css/main.css'],
 });
-
-// postcss@latest autoprefixer@latest
