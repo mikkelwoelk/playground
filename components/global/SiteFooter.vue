@@ -67,7 +67,7 @@
         </div>
       </div>
       <div
-        class="w-full rounded-b-[45px] p-6 mt-[100vh] pt-20 bg-dark-secondary dark:bg-secondary flex flex-col justify-start"
+        class="w-full rounded-b-[45px] sm:rounded-lg p-6 mt-[100vh] pt-20 bg-dark-secondary dark:bg-secondary flex flex-col justify-start"
       >
         <span class="text-5xl text-secondary dark:text-dark-secondary"> woelk </span>
 
