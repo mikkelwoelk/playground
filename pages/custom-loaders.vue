@@ -1,7 +1,7 @@
 <template>
   <div class="p-custom-loaderss">
     <h1 class="page-title" v-text="pageTitle"></h1>
-    <div class="grid grid-cols-4 gap-5">
+    <div class="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
       <!-- circular loader -->
       <div class="loader">
         <div class="loader-circle">
