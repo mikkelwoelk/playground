@@ -26,9 +26,9 @@
         <div class="w-20 h-12">
           <div class="loader-spinning-dots">
             <svg viewBox="0 0 80 48" xmlns="http://www.w3.org/2000/svg">
-              <circle class="dot" cx="0" cy="25" r="8"></circle>
-              <circle class="dot" cx="0" cy="25" r="8" style="animation-delay: 1000ms"></circle>
-              <circle class="dot" cx="0" cy="25" r="8" style="animation-delay: 2000ms"></circle>
+              <circle class="spin-dot" cx="0" cy="25" r="8"></circle>
+              <circle class="spin-dot" cx="0" cy="25" r="8" style="animation-delay: 1000ms"></circle>
+              <circle class="spin-dot" cx="0" cy="25" r="8" style="animation-delay: 2000ms"></circle>
             </svg>
           </div>
         </div>
@@ -38,9 +38,9 @@
         <div class="w-20 h-12">
           <div class="loader-bouncing-dots">
             <svg viewBox="0 0 80 48" xmlns="http://www.w3.org/2000/svg">
-              <circle class="dot" cx="15" cy="40" r="8"></circle>
-              <circle class="dot" cx="40" cy="40" r="8" style="animation-delay: 500ms"></circle>
-              <circle class="dot" cx="65" cy="40" r="8" style="animation-delay: 1000ms"></circle>
+              <circle class="bounce-dot" cx="15" cy="40" r="8"></circle>
+              <circle class="bounce-dot" cx="40" cy="40" r="8" style="animation-delay: 500ms"></circle>
+              <circle class="bounce-dot" cx="65" cy="40" r="8" style="animation-delay: 1000ms"></circle>
             </svg>
           </div>
         </div>
@@ -110,7 +110,7 @@ const pageTitle = ref('custom loaders');
 }
 
 /* spinning dots */
-.loader-spinning-dots .dot {
+.loader-spinning-dots .spin-dot {
   @apply fill-dark-secondary dark:fill-secondary rounded-full opacity-0;
   animation: loader-spinning-dot cubic-bezier(0.65, 0, 0.35, 1) 3000ms infinite;
 }
@@ -141,7 +141,7 @@ const pageTitle = ref('custom loaders');
 }
 
 /* bouncing dots */
-.loader-bouncing-dots .dot {
+.loader-bouncing-dots .bounce-dot {
   @apply fill-dark-secondary dark:fill-secondary rounded-full opacity-20;
   animation: loader-bouncing-dot cubic-bezier(0.7, 0, 0.84, 0) 2000ms infinite;
 }
