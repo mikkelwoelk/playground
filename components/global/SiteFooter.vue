@@ -195,10 +195,7 @@ function easeOutQuart(x) {
 }
 
 .c-site-footer__item:last-child:after {
-  @screen sm {
-    content: '';
-    @apply absolute h-3/5 w-[1px] bg-secondary dark:bg-dark-secondary top-1/2 right-0 -translate-y-1/2 duration-300 ease-in-out;
-  }
+  @apply sm:content-[''] sm:absolute sm:h-3/5 sm:w-[1px] sm:bg-secondary sm:dark:bg-dark-secondary sm:top-1/2 sm:right-0 sm:-translate-y-1/2 sm:duration-300 sm:ease-in-out;
 }
 
 .c-site-footer__item:hover::before {
