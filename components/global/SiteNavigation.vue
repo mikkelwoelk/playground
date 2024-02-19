@@ -44,14 +44,32 @@
       <BackButton v-if="route.path !== '/'" />
 
       <div class="fixed top-5 right-5 md:top-8 md:right-10 z-50 flex items-center">
-        <div
+        <!-- <button
           class="c-site-navigation__menu group relative w-10 h-10 flex items-center justify-end cursor-pointer z-50"
           @click="() => toggleMenuOverlay()"
+        > -->
+        <button
+          class="grid place-content-center aspect-square hover:opacity-50 duration-200 ease-in-out"
+          @click="() => toggleMenuOverlay()"
         >
-          <span
+          <!-- <div
             class="menu-line w-4/5 group-hover:w-2/4 h-1 rounded-sm bg-dark-secondary dark:bg-secondary duration-300 ease-in-out"
-          ></span>
-        </div>
+            :class="{ 'animate-to-close-btn': isOverlayOpen }"
+          >
+
+        </div> -->
+          <div
+            class="menu-line relative w-[32px] h-[32px]"
+            :class="[
+              isOverlayOpen ? 'c-site-navigation__menu--animate-open' : 'c-site-navigation__menu--animate-close',
+              isOverlayOpen ? 'c-site-navigation__menu--animate-open' : 'c-site-navigation__menu--animate-close',
+            ]"
+          >
+            <div class="menu-line-before"></div>
+            <div class="menu-line"></div>
+            <div class="menu-line-after"></div>
+          </div>
+        </button>
       </div>
     </div>
   </div>
@@ -66,17 +84,16 @@ const route = useRoute();
 
 const navigation = store.siteNavigation;
 
-const themeCookie = useCookie('theme');
-const activeTheme = ref('default');
+const activeTheme = ref('');
 const isDarkMode = ref(true);
 
 const changeTheme = () => {
   isDarkMode.value = !isDarkMode.value;
   if (isDarkMode.value === true) {
-    themeCookie.value = 'dark';
+    localStorage.theme = 'dark';
     activeTheme.value = 'dark';
   } else {
-    themeCookie.value = 'light';
+    localStorage.theme = 'light';
     activeTheme.value = 'light';
   }
 
@@ -84,11 +101,12 @@ const changeTheme = () => {
 };
 
 const setTheme = () => {
-  themeCookie.value === 'dark' || (!themeCookie.value && window.matchMedia('(prefers-color-scheme: dark)').matches)
+  localStorage.theme === 'dark' ||
+  (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
     ? document.documentElement.classList.add('dark')
     : document.documentElement.classList.remove('dark');
 
-  activeTheme.value = themeCookie.value;
+  activeTheme.value = localStorage.theme;
 };
 
 const isOverlayOpen = ref(false);
@@ -120,13 +138,202 @@ onMounted(() => {
   overflow: hidden;
 }
 
-.menu-line::before {
+/* .menu-line::before {
   content: '';
   @apply absolute top-[8px] right-0 w-3/5 group-hover:w-4/5 h-1 rounded-sm bg-dark-secondary dark:bg-secondary duration-300 ease-in-out;
 }
 .menu-line::after {
   content: '';
   @apply absolute bottom-[8px] right-0 w-2/5 group-hover:w-1/5 h-1 rounded-sm bg-dark-secondary dark:bg-secondary duration-300 ease-in-out;
+} */
+
+/* .animate-to-close-btn {
+  animation: transform-to-close ease-in-out 200ms forwards;
+}
+
+@keyframes transform-to-close {
+  100% {
+    width: 0px;
+  }
+} */
+
+.c-site-navigation__menu .menu-line {
+  @apply absolute w-[25px] h-[2px] bg-dark-secondary dark:bg-secondary transition-opacity;
+  transition-delay: 100ms;
+  top: 16px;
+  left: 16px;
+  transform: translateX(-50%);
+}
+
+.c-site-navigation__menu .menu-line-before {
+  @apply absolute w-[25px] h-[2px] bg-dark-secondary dark:bg-secondary;
+  top: 8px;
+  left: 16px;
+  transform: translateX(-50%);
+  transform-origin: center;
+}
+
+.c-site-navigation__menu .menu-line-after {
+  @apply absolute w-[25px] h-[2px] bg-dark-secondary dark:bg-secondary;
+  top: 24px;
+  left: 16px;
+  transform: translateX(-50%);
+  transform-origin: center;
+}
+
+.c-site-navigation__menu--animate-open .menu-line {
+  opacity: 0;
+}
+
+.c-site-navigation__menu--animate-open .menu-line-before {
+  @apply absolute w-[25px] h-[2px] bg-dark-secondary dark:bg-secondary;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  transform-origin: center;
+  animation: menu-line-before-open 2000ms cubic-bezier(0.87, 0, 0.13, 1) forwards;
+}
+
+@keyframes menu-line-before-open {
+  0% {
+    top: 8px;
+    left: 16px;
+  }
+  20% {
+    top: 16px;
+    left: 16px;
+    transform: translateX(-13px) rotate(0deg);
+  }
+  30%,
+  60% {
+    top: 16px;
+    left: 16px;
+    transform: translateX(-13px) rotate(0deg) scaleX(0);
+  }
+  75% {
+    top: 16px;
+    left: 16px;
+    transform: translateX(-13px) rotate(0deg) scaleX(1);
+  }
+  100% {
+    top: 16px;
+    left: 16px;
+    transform: translateX(-13px) rotate(45deg);
+  }
+}
+
+.c-site-navigation__menu--animate-close .menu-line-before {
+  @apply absolute w-[25px] h-[2px] bg-dark-secondary dark:bg-secondary;
+  top: 8px;
+  left: 16px;
+  transform: translateX(-50%);
+  transform-origin: center;
+  animation: menu-line-before-close 2000ms cubic-bezier(0.87, 0, 0.13, 1) forwards;
+}
+
+@keyframes menu-line-before-close {
+  0% {
+    top: 16px;
+    left: 16px;
+    transform: translateX(-13px) rotate(45deg);
+  }
+  20% {
+    top: 16px;
+    left: 16px;
+    transform: translateX(-13px) rotate(0deg);
+  }
+  30%,
+  60% {
+    top: 16px;
+    left: 16px;
+    transform: translateX(-13px) rotate(0deg) scaleX(0);
+  }
+  75% {
+    top: 16px;
+    left: 16px;
+    transform: translateX(-13px) rotate(0deg) scaleX(1);
+  }
+
+  100% {
+    top: 8px;
+    left: 16px;
+  }
+}
+
+.c-site-navigation__menu--animate-open .menu-line-after {
+  @apply absolute w-[25px] h-[2px] bg-dark-secondary dark:bg-secondary;
+  top: 24px;
+  left: 16px;
+  transform: translateX(-50%);
+  transform-origin: center;
+  animation: menu-line-after-open 2000ms cubic-bezier(0.87, 0, 0.13, 1) forwards;
+}
+
+@keyframes menu-line-after-open {
+  0% {
+    top: 24px;
+    left: 50%;
+  }
+  20% {
+    top: 16px;
+    left: 16px;
+    transform: translateX(-13px) rotate(0deg);
+  }
+  30%,
+  60% {
+    top: 16px;
+    left: 16px;
+    transform: translateX(-13px) rotate(0deg) scaleX(0);
+  }
+  75% {
+    top: 16px;
+    left: 16px;
+    transform: translateX(-13px) rotate(0deg) scaleX(1);
+  }
+
+  100% {
+    top: 16px;
+    left: 16px;
+    transform: translateX(-13px) rotate(-45deg);
+  }
+}
+
+.c-site-navigation__menu--animate-close .menu-line-after {
+  @apply absolute w-[25px] h-[2px] bg-dark-secondary dark:bg-secondary;
+  top: 24px;
+  left: 16px;
+  transform: translateX(-50%);
+  transform-origin: center;
+  animation: menu-line-after-close 2000ms cubic-bezier(0.87, 0, 0.13, 1) forwards;
+}
+
+@keyframes menu-line-after-close {
+  0% {
+    top: 16px;
+    left: 16px;
+    transform: translateX(-13px) rotate(-45deg);
+  }
+  20% {
+    top: 16px;
+    left: 16px;
+    transform: translateX(-13px) rotate(0deg);
+  }
+  30%,
+  60% {
+    top: 16px;
+    left: 16px;
+    transform: translateX(-13px) rotate(0deg) scaleX(0);
+  }
+  75% {
+    top: 16px;
+    left: 16px;
+    transform: translateX(-13px) rotate(0deg) scaleX(1);
+  }
+
+  100% {
+    top: 24px;
+    left: 16px;
+  }
 }
 
 .t-menu-overlay-enter-active {
@@ -150,8 +357,8 @@ onMounted(() => {
 .t-menu-overlay__cover:first-child,
 .t-menu-overlay-leave-active ~ .t-menu-overlay__cover {
   @apply block;
-  /* animation: t-menu-overlay__cover--part-1 1000ms forwards ease-in-out; */
-  animation: t-menu-overlay__cover--part-1 1000ms forwards cubic-bezier(0.83, 0, 0.17, 1);
+  /* animation: t-menu-overlay__cover--part-1 2000ms forwards ease-in-out; */
+  animation: t-menu-overlay__cover--part-1 1500ms forwards cubic-bezier(0.83, 0, 0.17, 1);
   animation-iteration-count: 1;
 }
 .t-menu-overlay-enter-active ~ .t-menu-overlay__cover {
@@ -162,7 +369,7 @@ onMounted(() => {
 
 @keyframes t-menu-overlay__cover--part-1 {
   0% {
-    clip-path: circle(10% at 50% -10%);
+    clip-path: circle(10% at 50% -20%);
   }
   50% {
     clip-path: circle(0 at 50% 50%);

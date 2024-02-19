@@ -1,11 +1,11 @@
 <template>
-  <div class="p-custom-loaderss">
+  <div class="p-custom-loaders">
     <h1 class="page-title" v-text="pageTitle"></h1>
     <div class="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
       <!-- circular loader -->
       <div class="loader">
         <div class="loader-circle">
-          <div class="w-12 h-12 relative">
+          <div class="relative w-12 h-12">
             <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
               <circle cx="25" cy="25" r="18" stroke-width="12" stroke-linecap="round" />
             </svg>
@@ -67,7 +67,6 @@ const pageTitle = ref('custom loaders');
 @keyframes loader-circle {
   0% {
     stroke-dashoffset: 0;
-    /* stroke-dasharray: 0; */
   }
   100% {
     stroke-dashoffset: 270;
